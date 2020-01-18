@@ -1,23 +1,28 @@
 #pragma once
+#include "player.h"
 #include<iostream>
 enum class MyControl
 {
-LEFT = 1,
-RIGHT,
-UP,
-DOWN,
-STOP
+	LEFT = 1,
+	RIGHT,
+	UP,
+	DOWN,
+	STOP
 };
 
 class map
 {
 private:
-	const int vertical = 20;//Вертикаль карты
-	const int horizontal = 44;//Горизонталь карты
+	MyControl m_control;
+	player player;
+	int var_control = 0;
+
+	int vertical = 20;//Вертикаль карты
+	int horizontal = 44;//Горизонталь карты
 	char field[20][44];//Поле карты
 
-	const char wall_skin = '0';//Текстурка стены
-	const char empty_skin = ' ';//Текстурка пола
+	char wall_skin = '0';//Текстурка стены
+	char empty_skin = ' ';//Текстурка пола
 
 	char player_skin = 'P';//Текстурка игрока
 	char bots_skin = 'V';//Текстурка бота
@@ -25,6 +30,8 @@ private:
 public:
 	void map_generation();
 	void show_map();
+	void control();
+	void logic_control();
 	int get_vertical();
 	int get_horizontal();
 	int get_field();
