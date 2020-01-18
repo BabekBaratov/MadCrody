@@ -10,11 +10,11 @@ enum class MyControl
 	STOP
 };
 
-class map
+class map_game
 {
 private:
 	MyControl m_control;
-	player player;
+	player player_;
 	int var_control = 0;
 
 	int vertical = 20;//Вертикаль карты
@@ -28,8 +28,8 @@ private:
 	char bots_skin = 'V';//Текстурка бота
 	char bonus_skin = '$';//Текстурка монетки
 public:
-	void map_generation();
-	void show_map();
+	virtual void map_generation();
+	virtual void show_map();
 	void control();
 	void logic_control();
 	int get_vertical();
