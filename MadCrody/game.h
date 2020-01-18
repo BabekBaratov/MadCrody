@@ -1,7 +1,5 @@
 #pragma once
-
 using namespace std;
-#include <SFML/Graphics.hpp>
 #include "map.h"
 #include "player.h"
 #include "unit.h"
@@ -11,7 +9,7 @@ using namespace std;
 class game
 {
 protected:
-	map_game maping;
+	map maping;
 	unit units;
 	player player;
 public:

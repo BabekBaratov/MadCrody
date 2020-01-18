@@ -1,6 +1,6 @@
 #include "map.h"
 
-void map_game::map_generation()
+void map::map_generation()
 {
 	system("cls");
 	for (int i = 0; i < vertical; i++)
@@ -16,7 +16,7 @@ void map_game::map_generation()
 				field[i][j] = empty_skin;
 			}
 
-			if (i == player_.get_x() - 1 && j == player_.get_y() - 1)
+			if (i == player.get_x() - 1 && j == player.get_y() - 1)
 			{
 				field[i][j] = player_skin;
 			}
@@ -24,18 +24,19 @@ void map_game::map_generation()
 	}
 }
 
-void map_game::show_map()
+void map::show_map()
 {
 	for (int i = 0; i < vertical; i++)
 	{
-		for (int j = 0; j < horizontal; j++)						
+		for (int j = 0; j < horizontal; j++)
 		{
 			std::cout << field[i][j];
 		}
 		std::cout << std::endl;
 	}
 }
-void map_game::control()
+
+void map::control()
 {
 	if (_kbhit())
 	{
@@ -65,18 +66,18 @@ void map_game::control()
 	}
 }
 
-void map_game::logic_control()
+void map::logic_control()
 {
 	switch (m_control)
 	{
 	case MyControl::LEFT:
 	{
 		std::cout << "A" << std::endl;
-		std::cout << "Y--: " << player_.get_y() << std::endl;
-		if (player_.get_y() > 2)
+		std::cout << "Y--: " << player.get_y() << std::endl;
+		if (player.get_y() > 2)
 		{
-			var_control = player_.get_y(); var_control--;
-			player_.set_y(var_control);
+			var_control = player.get_y(); var_control--;
+			player.set_y(var_control);
 			//m_control = MyControl::STOP;
 		}
 		break;
@@ -84,11 +85,11 @@ void map_game::logic_control()
 	case MyControl::RIGHT:
 	{
 		std::cout << "D" << std::endl;
-		std::cout << "Y++: " << player_.get_y() << std::endl;
-		if (player_.get_y() < 43)
+		std::cout << "Y++: " << player.get_y() << std::endl;
+		if (player.get_y() < 43)
 		{
-			var_control = player_.get_y(); var_control++;
-			player_.set_y(var_control);
+			var_control = player.get_y(); var_control++;
+			player.set_y(var_control);
 			//m_control = MyControl::STOP;
 		}
 		break;
@@ -96,17 +97,17 @@ void map_game::logic_control()
 	}
 }
 
-int map_game::get_vertical()
+int map::get_vertical()
 {
 	return vertical;
 }
 
-int map_game::get_horizontal()
+int map::get_horizontal()
 {
 	return horizontal;
 }
 
-int map_game::get_field()
+int map::get_field()
 {
 	return field[20][44];
 }

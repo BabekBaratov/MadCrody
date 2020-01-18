@@ -8,6 +8,9 @@ void game::set_spawn_position_player(unit& acc)
 void game::start()
 {
 	set_spawn_position_player(player);
+
+
+
 	do
 	{
 		maping.map_generation();
