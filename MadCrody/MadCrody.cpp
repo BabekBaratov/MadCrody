@@ -7,7 +7,6 @@ int main()
 	setlocale(LC_ALL, "rus");
 	game game;
 	game.start();
-
 	system("pause");
 	return 0;
 }
