@@ -1,5 +1,6 @@
 #pragma once
 #include "player.h"
+#include "bot.h"
 #include<iostream>
 enum class MyControl
 {
@@ -15,6 +16,7 @@ class map
 private:
 	MyControl m_control;
 	player player;
+	bot bots;
 	int var_control = 0;
 
 	int vertical = 20;//Вертикаль карты
@@ -23,12 +25,11 @@ private:
 
 	char wall_skin = '0';//Текстурка стены
 	char empty_skin = ' ';//Текстурка пола
-
 	char player_skin = 'P';//Текстурка игрока
 	char bots_skin = 'V';//Текстурка бота
 	char bonus_skin = '$';//Текстурка монетки
 public:
-	void map_generation();
+	void map_generation(int tmp_bot_get_x, int tmp_bot_get_y);
 	void show_map();
 	void control();
 	void logic_control();

@@ -1,6 +1,7 @@
 #include "player.h"
 
-void player::set_spawn_position_player()
+void player::set_position(int vertical, int horizontal)
 {
-	std::cout << "Player" << std::endl;
+	x = vertical - 1;
+	y = horizontal / 2;
 }

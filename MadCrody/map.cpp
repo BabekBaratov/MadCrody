@@ -1,6 +1,6 @@
 #include "map.h"
 
-void map::map_generation()
+void map::map_generation(int tmp_bot_get_x, int tmp_bot_get_y)
 {
 	system("cls");
 	for (int i = 0; i < vertical; i++)
@@ -20,12 +20,19 @@ void map::map_generation()
 			{
 				field[i][j] = player_skin;
 			}
+
+			if (i == tmp_bot_get_x - 1 && j == tmp_bot_get_y - 1)
+			{
+				field[i][j] = bots_skin;
+			}
 		}
 	}
 }
 
 void map::show_map()
 {
+	std::cout << "Y: " << bots.get_y() << " X: " << bots.get_x() << std::endl;
+	std::cout << "Y: " << player.get_y() << " X: " << player.get_x() << std::endl;
 	for (int i = 0; i < vertical; i++)
 	{
 		for (int j = 0; j < horizontal; j++)

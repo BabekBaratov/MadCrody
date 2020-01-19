@@ -3,7 +3,6 @@
 class player : public unit
 {
 public:
-	int var_control = 0;
-	void set_spawn_position_player() override;
+	void set_position(int vertical, int hozirontal);
 };
 
