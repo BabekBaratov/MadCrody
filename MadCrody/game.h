@@ -31,13 +31,14 @@ protected:
 
 	control control_obj;//Перечисление (управление) 
 	mycontrol m_control;
+
 	int var_score = 0;//Передача счёта
 	int selected_index = 0;//Возвращает выбраный элемент
 
 	string database = "account.txt";//Название файла (логин - пароль)
+
 	ofstream fout;//Запись данных в файл
 	ifstream fin;//Открытие файла
-	
 public:
 	game();
 	game(const game&) = delete;

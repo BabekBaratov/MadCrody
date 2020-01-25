@@ -6,7 +6,7 @@ void auth_me::auth_menu()
 	{
 		system("color F0");
 		CYCLE_FOR
-			cout << "\t\t\t   Добро пожаловать в игру" << endl;
+		cout << "\t\t\t   Добро пожаловать в игру" << endl;
 		cout << "\t\t\t\t   MadCrody" << endl;
 		cout << endl;
 		cout << "\t\t\t\t Авторизация" << endl;
@@ -65,9 +65,13 @@ void auth_me::auth_menu()
 			auth_menu_animation();
 		}
 	}
-	catch (char error)
+	catch (char error_one)
 	{
-		cerr <<"Error: " << error << endl;
+		cerr <<"\t\t\t   Error: " << error_one << endl;
+	}
+	catch (const char* error_two)
+	{
+		cerr << "\t\t\t   Error: " << error_two << endl;
 	}
 }
 
@@ -126,8 +130,8 @@ void auth_me::authorization_login()
 
 		fin.open(database);
 		if (!fin.is_open()) throw "Ошибка открытия файла.";
-		CYCLE_FOR
 
+		CYCLE_FOR
 		user_found = false;
 
 		while (true) 
@@ -155,7 +159,7 @@ void auth_me::authorization_login()
 			system("cls");
 			CYCLE_FOR
 			cout << "\t\t\t\tНе верный логин!" << endl;
-			Sleep(1000);
+			Sleep(3000);
 			fin.close();
 		}
 	} while (true);
@@ -175,14 +179,15 @@ void auth_me::authorization_password(string valid_login, string valid_password)
 			strcpy(const_cast<char*>(login.c_str()), valid_login.c_str());
 			strcpy(const_cast<char*>(password.c_str()), valid_password.c_str());
 			system("cls");
+			fin.close();
 			menu.menu();
 		}
 		else
 		{
 			system("cls");
 			CYCLE_FOR
-			cout << "\t\t\t\tНе верный логин!" << endl;
-			Sleep(1000);
+			cout << "\t\t\t\tНе верный пароль!" << endl;
+			Sleep(3000);
 			fin.close();
 		}
 	} while (true);
@@ -190,26 +195,69 @@ void auth_me::authorization_password(string valid_login, string valid_password)
 
 void auth_me::registration()
 {
-	system("cls");
-	fout.open(database, ofstream::app);
+	do
+	{
+		system("cls");
+		CYCLE_FOR
+		cout << "\t\t\t\tВведите логин: ";
+		cin >> login_reg;
 
-	if (!fout.is_open()) throw "Ошибка открытия файла.";
-	CYCLE_FOR
+		fout.open(database, ofstream::app);
+		if (!fout.is_open()) throw "Ошибка открытия файла.";
 
-	cout << "\t\t\t\tВведите логин: ";
-	cin >> login_reg;
-	fout << login_reg << endl;
+		fin.open(database);
+		if (!fin.is_open()) throw "Ошибка открытия файла.";
+		CYCLE_FOR
 
-	system("cls");
-	CYCLE_FOR
-	cout << "\t\t\t\tВаш логин: " << login_reg << endl;
-	cout << endl;
+		user_found = false;
 
-	cout << "\t\t\t\tВведите пароль: ";
-	cin >> password_reg;
-	fout << password_reg << endl;
+		while (true)
+		{
+			if (getline(fin, valid_login))
+			{
+				if (valid_login == login_reg)
+				{
+					getline(fin, valid_pass);
+					user_found = true;
+				}
+			}
+			else
+			{
+				break;
+			}
+		}
 
-	fout.close();
-	system("cls");
-	auth_menu();
+		if ((user_found) == 0)
+		{
+			fout << login_reg << endl;
+
+			system("cls");
+			CYCLE_FOR
+			cout << "\t\t\t\tВаш логин: " << login_reg << endl;
+			cout << endl;
+
+			cout << "\t\t\t\tВведите пароль: ";
+			cin >> password_reg;
+			fout << password_reg << endl;
+			fin.close();
+			fout.close();
+
+			system("cls");
+			CYCLE_FOR
+			cout << "\t\t\t   Отлично! Аккаунт: " << login_reg << " был успешно создан!" << endl;
+
+			Sleep(3000);
+			system("cls");
+			auth_menu();
+		}
+		else
+		{
+			system("cls");
+			CYCLE_FOR
+			cout << "\t\t\t\tТакой логин уже существует!" << endl;
+			Sleep(3000);
+			fin.close();
+			fout.close();
+		}
+	} while (true);
 }
