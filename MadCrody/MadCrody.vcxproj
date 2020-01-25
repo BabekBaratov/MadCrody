@@ -23,7 +23,7 @@
     <ProjectGuid>{C148B92D-01BD-4631-BBC8-22781B7F17DB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MadCrody</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -147,19 +147,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="auth_me.cpp" />
+    <ClCompile Include="bonus.cpp" />
     <ClCompile Include="bot.cpp" />
+    <ClCompile Include="control.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="MadCrody.cpp" />
+    <ClCompile Include="main_menu.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="auth_me.h" />
+    <ClInclude Include="bonus.h" />
     <ClInclude Include="bot.h" />
+    <ClInclude Include="control.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="main_menu.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="unit.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

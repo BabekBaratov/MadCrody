@@ -1,15 +1,14 @@
 ﻿// MadCrody.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-#include"game.h"
+#include"auth_me.h"
 
 int main()
 {
-	srand(time(0));
+	srand(time_t(0));
 	setlocale(LC_ALL, "rus");
 
-	game game;
-	game.start();
-
+	auth_me auth;
+	auth.auth_menu();
 
 	system("pause");
 	return 0;
