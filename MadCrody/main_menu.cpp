@@ -5,7 +5,6 @@ void main_menu::menu()
 	system("color F0");
 	CYCLE_FOR
 	cout << "\t\t\t\t Начать игру" << endl;
-	cout << "\t\t\t\t  Настройки" << endl;
 	cout << "\t\t\t\t    Выйти" << endl;
 
 	while (true)
@@ -26,7 +25,7 @@ void main_menu::menu()
 		case 'S':
 		case 's':
 		{
-			if (selected_index < 2)
+			if (selected_index < 1)
 			{
 				selected_index++;
 			}
@@ -38,15 +37,10 @@ void main_menu::menu()
 			{
 			case 0:
 			{
-				start();
+				complexity();
 				break;
 			}
 			case 1:
-			{
-				settings();
-				break;
-			}
-			case 2:
 			{
 				exit(0);
 				break;
@@ -70,7 +64,6 @@ void main_menu::animation_menu()
 		system("cls");
 		CYCLE_FOR
 		cout << "\t\t\t\t>Начать игру<" << endl;
-		cout << "\t\t\t\t  Настройки" << endl;
 		cout << "\t\t\t\t    Выйти" << endl;
 		break;
 	}
@@ -79,29 +72,20 @@ void main_menu::animation_menu()
 		system("cls");
 		CYCLE_FOR
 		cout << "\t\t\t\t Начать игру" << endl;
-		cout << "\t\t\t\t >Настройки<" << endl;
-		cout << "\t\t\t\t    Выйти" << endl;
-		break;
-	}
-	case 2:
-	{
-		system("cls");
-		CYCLE_FOR
-		cout << "\t\t\t\t Начать игру" << endl;
-		cout << "\t\t\t\t  Настройки" << endl;
 		cout << "\t\t\t\t   >Выйти<" << endl;
 		break;
 	}
 	}
 }
 
-void main_menu::settings()
+void main_menu::complexity()
 {
 	system("cls");
 	CYCLE_FOR
-	cout << "\t\t\t\t   Профиль" << endl;
-	cout << "\t\t\t\t  Сложность" << endl;
-	cout << "\t\t\t\t    Назад" << endl;
+	cout << "\t  Что бы начать играть, нужно выбрать уровень сложности" << endl;
+	cout << "\t\t\t\t Новичек" << endl;
+	cout << "\t\t\t\t Обычный" << endl;
+	cout << "\t\t\t\t Тяжелый" << endl;
 
 	while (true)
 	{
@@ -133,18 +117,20 @@ void main_menu::settings()
 			{
 			case 0:
 			{
-				profile();
+				customization(4);
+				start();
 				break;
 			}
 			case 1:
 			{
-				
+				customization(7);
+				start();
 				break;
 			}
 			case 2:
 			{
-				system("cls");
-				menu();
+				customization(10);
+				start();
 				break;
 			}
 			default:
@@ -153,12 +139,11 @@ void main_menu::settings()
 			break;
 		}
 		}
-		animation_settings();
+		animation_complexity();
 	}
-	
 }
 
-void main_menu::animation_settings()
+void main_menu::animation_complexity()
 {
 	switch (selected_index)
 	{
@@ -166,37 +151,31 @@ void main_menu::animation_settings()
 	{
 		system("cls");
 		CYCLE_FOR
-		cout << "\t\t\t\t  >Профиль<" << endl;
-		cout << "\t\t\t\t  Сложность" << endl;
-		cout << "\t\t\t\t    Назад" << endl;
+		cout << "\t  Что бы начать играть, нужно выбрать уровень сложности" << endl;
+		cout << "\t\t\t\t>Новичек<" << endl;
+		cout << "\t\t\t\t Обычный" << endl;
+		cout << "\t\t\t\t Тяжелый" << endl;
 		break;
 	}
 	case 1:
 	{
 		system("cls");
 		CYCLE_FOR
-		cout << "\t\t\t\t   Профиль" << endl;
-		cout << "\t\t\t\t >Сложность<" << endl;
-		cout << "\t\t\t\t    Назад" << endl;
+		cout << "\t  Что бы начать играть, нужно выбрать уровень сложности" << endl;
+		cout << "\t\t\t\t Новичек" << endl;
+		cout << "\t\t\t\t>Обычный<" << endl;
+		cout << "\t\t\t\t Тяжелый" << endl;
 		break;
 	}
 	case 2:
 	{
 		system("cls");
 		CYCLE_FOR
-		cout << "\t\t\t\t   Профиль" << endl;
-		cout << "\t\t\t\t  Сложность" << endl;
-		cout << "\t\t\t\t   >Назад<" << endl;
+		cout << "\t  Что бы начать играть, нужно выбрать уровень сложности" << endl;
+		cout << "\t\t\t\t Новичек" << endl;
+		cout << "\t\t\t\t Обычный" << endl;
+		cout << "\t\t\t\t>Тяжелый<" << endl;
 		break;
 	}
 	}
-}
-
-void main_menu::profile()
-{
-	system("cls");
-	CYCLE_FOR
-	cout << "\t\t\t\tВаш логин: " << endl;
-
-	system("pause");
 }

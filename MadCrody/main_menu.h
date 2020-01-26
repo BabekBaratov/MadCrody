@@ -6,8 +6,7 @@ private:
 public:
 	virtual void menu();//Меню игры
 	void animation_menu();//Анимация меню
-	virtual void settings();//Настройки игры
-	void animation_settings();//Анимация меню
-	virtual void profile();//Информация о профиле
+	virtual void complexity();//Сложность игры
+	void animation_complexity();//Анимация меню сложности
 };
 

@@ -40,11 +40,11 @@ protected:
 	ofstream fout;//Запись данных в файл
 	ifstream fin;//Открытие файла
 public:
-	game();
+	game() = default;
 	game(const game&) = delete;
 	game& operator=(const game&) = delete;
 
-	virtual void creates_bot(int bot_num);//Создание ботов
+	void customization(int bot_num);//Задает начальные значения
 	virtual void start();//Старт игры
 	virtual void restart();//Спавн всех unit
 	virtual void game_over();//Конец игры

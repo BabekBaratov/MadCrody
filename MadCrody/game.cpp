@@ -1,12 +1,14 @@
 #include "game.h"
 
-
-game::game()
+void game::customization(int bot_num)
 {
 	player_obj = new player('P');
 	bonus_obj = new bonus('$');
 
-	creates_bot(5); 
+	for (int i = 0; i < bot_num; i++)
+	{
+		bot_arr.push_back(new bot('V'));
+	}
 
 	for (int i = 0; i < bot_arr.size(); i++)
 	{
@@ -31,15 +33,6 @@ void game::restart()
 	}
 }
 
-void game::creates_bot(int bot_num)
-{
-	for (int i = 0; i < bot_num; i++)
-	{
-		bot_arr.push_back(new bot('V'));
-	}
-}
-
-
 void game::start()
 {
 	do
@@ -63,11 +56,10 @@ void game::start()
 void game::game_over()
 {
 	system("cls");
-	cout << "Game Over\nYour Score: " << player_obj->get_score()<< endl;
-	cout << "Size Bots: " << bot_arr.size() << endl;
+	cout << "\t\t\t\tGame Over\n\t\t\t\tYour Score: " << player_obj->get_score()<< endl;
 
 	player_obj->set_score(0);
-	system("pause");
+	Sleep(3000);
 	system("cls");
 }
 
