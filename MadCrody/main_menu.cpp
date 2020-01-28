@@ -117,20 +117,20 @@ void main_menu::complexity()
 			{
 			case 0:
 			{
-				customization(4);
-				start();
+				game.customization(4);
+				game.start();
 				break;
 			}
 			case 1:
 			{
-				customization(7);
-				start();
+				game.customization(7);
+				game.start();
 				break;
 			}
 			case 2:
 			{
-				customization(10);
-				start();
+				game.customization(10);
+				game.start();
 				break;
 			}
 			default:

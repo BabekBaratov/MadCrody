@@ -1,8 +1,9 @@
 #pragma once
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
-#include "player.h"
-#include "map.h"
+#include "unit.h"
+#include <vector>
+#include <algorithm>
 
 enum class mycontrol
 {
@@ -13,14 +14,14 @@ enum class mycontrol
 	STOP
 };
 
-class control : public map
+class control
 {
 private:
-	int var_control;
 	mycontrol m_control;
+	std::vector<unit*> units;//Массив юнитов
 public:
-	void add_unit(unit* u);
-	void fun_control();
-	void logic();
+	void add_unit(unit* u);//Передача юнитов
+	void fun_control();//Управление
+	void logic();//Логика управления
 };
 

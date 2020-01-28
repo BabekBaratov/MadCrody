@@ -1,5 +1,10 @@
 #include "auth_me.h"
 
+auth_me::auth_me()
+{
+	usr_manager.load();
+}
+
 void auth_me::auth_menu()
 {
 	try
@@ -43,7 +48,7 @@ void auth_me::auth_menu()
 				{
 				case 0:
 				{
-					authorization_login();
+					enter_login();
 					break;
 				}
 				case 1:
@@ -118,7 +123,7 @@ void auth_me::auth_menu_animation()
 	}
 }
 
-void auth_me::authorization_login()
+void auth_me::enter_login()
 {
 	do
 	{
@@ -127,45 +132,21 @@ void auth_me::authorization_login()
 		cout << "\t\t\t\tВведите логин: ";
 		cin >> login;
 
-
-		fin.open(database);
-		if (!fin.is_open()) throw "Ошибка открытия файла.";
-
-		CYCLE_FOR
-		user_found = false;
-
-		while (true) 
+		if (usr_manager.login_exists(login))
 		{
-			if (getline(fin, valid_login))
-			{
-				if (valid_login == login)
-				{
-					getline(fin, valid_pass);
-					user_found = true;
-				}
-			}
-			else
-			{
-				break;
-			}
-		}
-
-		if (user_found)
-		{
-			authorization_password(valid_login, valid_pass);
+			enter_password();
 		}
 		else
 		{
 			system("cls");
 			CYCLE_FOR
 			cout << "\t\t\t\tНе верный логин!" << endl;
-			Sleep(3000);
-			fin.close();
+			Sleep(2000);
 		}
 	} while (true);
 }
 
-void auth_me::authorization_password(string valid_login, string valid_password)
+void auth_me::enter_password()
 {
 	do
 	{
@@ -174,12 +155,9 @@ void auth_me::authorization_password(string valid_login, string valid_password)
 		cout << "\t\t\t\tВведите пароль: ";
 		cin >> password;
 
-		if (valid_password == password)
+		if (usr_manager.valid(login, password))
 		{
-			strcpy(const_cast<char*>(login.c_str()), valid_login.c_str());
-			strcpy(const_cast<char*>(password.c_str()), valid_password.c_str());
 			system("cls");
-			fin.close();
 			menu.menu();
 		}
 		else
@@ -187,8 +165,7 @@ void auth_me::authorization_password(string valid_login, string valid_password)
 			system("cls");
 			CYCLE_FOR
 			cout << "\t\t\t\tНе верный пароль!" << endl;
-			Sleep(3000);
-			fin.close();
+			Sleep(2000);
 		}
 	} while (true);
 }
@@ -200,53 +177,29 @@ void auth_me::registration()
 		system("cls");
 		CYCLE_FOR
 		cout << "\t\t\t\tВведите логин: ";
-		cin >> login_reg;
+		cin >> login;
 
-		fout.open(database, ofstream::app);
-		if (!fout.is_open()) throw "Ошибка открытия файла.";
-
-		fin.open(database);
-		if (!fin.is_open()) throw "Ошибка открытия файла.";
 		CYCLE_FOR
 
-		user_found = false;
-
-		while (true)
+		if (!usr_manager.login_exists(login))
 		{
-			if (getline(fin, valid_login))
-			{
-				if (valid_login == login_reg)
-				{
-					getline(fin, valid_pass);
-					user_found = true;
-				}
-			}
-			else
-			{
-				break;
-			}
-		}
-
-		if ((user_found) == 0)
-		{
-			fout << login_reg << endl;
 
 			system("cls");
 			CYCLE_FOR
-			cout << "\t\t\t\tВаш логин: " << login_reg << endl;
+			cout << "\t\t\t\tВаш логин: " << login << endl;
 			cout << endl;
 
 			cout << "\t\t\t\tВведите пароль: ";
-			cin >> password_reg;
-			fout << password_reg << endl;
-			fin.close();
-			fout.close();
+			cin >> password;
+
+			usr_manager.add(user(login, password));
+			usr_manager.save();
 
 			system("cls");
 			CYCLE_FOR
-			cout << "\t\t\t   Отлично! Аккаунт: " << login_reg << " был успешно создан!" << endl;
+			cout << "\t\t\tОтлично! Аккаунт: " << login << " был успешно создан!" << endl;
 
-			Sleep(3000);
+			Sleep(2000);
 			system("cls");
 			auth_menu();
 		}
@@ -254,10 +207,8 @@ void auth_me::registration()
 		{
 			system("cls");
 			CYCLE_FOR
-			cout << "\t\t\t\tТакой логин уже существует!" << endl;
-			Sleep(3000);
-			fin.close();
-			fout.close();
+			cout << "\t\t\t  Такой логин уже существует!" << endl;
+			Sleep(2000);
 		}
 	} while (true);
 }

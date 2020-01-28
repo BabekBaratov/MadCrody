@@ -25,11 +25,6 @@ void control::fun_control()
 			m_control = mycontrol::RIGHT;
 			break;
 		}
-		case 'm':
-		{
-
-			break;
-		}
 		}
 	}
 }
@@ -44,8 +39,7 @@ void control::logic()
 		{
 			if (u->get_y() > 2)
 			{
-				var_control = u->get_y(); var_control--;
-				u->set_y(var_control);
+				u->set_y(u->get_y() - 1);
 				m_control = mycontrol::STOP;
 			}
 			break;
@@ -54,8 +48,7 @@ void control::logic()
 		{
 			if (u->get_y() < 43)
 			{
-				var_control = u->get_y(); var_control++;
-				u->set_y(var_control);
+				u->set_y(u->get_y() + 1);
 				m_control = mycontrol::STOP;
 			}
 			break;

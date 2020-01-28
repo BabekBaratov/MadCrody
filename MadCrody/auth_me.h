@@ -1,26 +1,22 @@
 #pragma once
 #include "main_menu.h"
 #include "game.h"
-class auth_me : public game
+class auth_me
 {
 private:
-	bool user_found;
-	string valid_login;
-	string valid_pass;
+	main_menu menu;//Вызов меню
+	user_manager usr_manager;//Менеджер пользователей
+	int selected_index = 0;//Возвращает выбраный элемент
 
 	string login;//Логин пользователя
 	string password;//Пароль пользователя
 
-	string login_reg;
-	string password_reg;
-
-	main_menu menu;
-
-	void auth_menu_animation();
-	void authorization_login();
-	void authorization_password(string valid_login, string valid_password);
-	void registration();
+	void auth_menu_animation();//Анимация меню
+	void enter_login();//Ввод логина
+	void enter_password();//Ввод пароля
+	void registration();//Регистрация
 public:
-	void auth_menu();
+	auth_me();
+	void auth_menu();//Меню
 };
 

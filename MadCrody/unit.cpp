@@ -1,11 +1,17 @@
 #include "unit.h"
 
-unit::unit(char skin) : x(0), y(0), skin(skin), score(0), increment(0)
+unit::unit(char skin) : x(0), y(0), skin(skin), score(0)
 {
 }
 
-unit::unit(int x, int y, char skin, int score, int increment) : x(x), y(y), skin(skin), score(score), increment(increment)
+unit::unit(int x, int y, char skin, int score) : x(x), y(y), skin(skin), score(score)
 {
+}
+
+void unit::set_random_position(int limit)
+{
+	x = rand() % 2 + 1;
+	y = rand() % (limit - 2) + 2;
 }
 
 int unit::get_x()
@@ -28,11 +34,6 @@ char unit::get_skin()
 	return skin;
 }
 
-int unit::get_increment()
-{
-	return increment;
-}
-
 void unit::set_x(int x)
 {
 	this->x = x;
@@ -51,9 +52,4 @@ void unit::set_score(int score)
 void unit::set_skin(char skin)
 {
 	this->skin = skin;
-}
-
-void unit::set_increment(int increment)
-{
-	this->increment = increment;
 }

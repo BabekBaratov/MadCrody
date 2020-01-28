@@ -157,6 +157,8 @@
     <ClCompile Include="map.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="unit.cpp" />
+    <ClCompile Include="user.cpp" />
+    <ClCompile Include="user_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="auth_me.h" />
@@ -168,9 +170,8 @@
     <ClInclude Include="map.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="unit.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="user_manager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

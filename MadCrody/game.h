@@ -1,10 +1,10 @@
 #pragma once
+using namespace std;
 #pragma warning(disable: 4996)
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_ENTER 13
 #define CYCLE_FOR for (int i = 0; i < 11; i++) {cout << endl;}
-using namespace std;
 #include "map.h"
 #include "player.h"
 #include "bot.h"
@@ -19,26 +19,20 @@ using namespace std;
 #include <algorithm>
 #include <Windows.h>
 #include <conio.h>
+#include "user_manager.h"
 
 class game
 {
 protected:
+	
 	map map_obj;//Обьект карты
 	player* player_obj;//Обькт для игрока
 	bonus* bonus_obj;//Обьект для бонуса
 
 	vector<bot*> bot_arr;//Массив ботов
 
-	control control_obj;//Перечисление (управление) 
-	mycontrol m_control;
-
-	int var_score = 0;//Передача счёта
-	int selected_index = 0;//Возвращает выбраный элемент
-
-	string database = "account.txt";//Название файла (логин - пароль)
-
-	ofstream fout;//Запись данных в файл
-	ifstream fin;//Открытие файла
+	control control_obj;//Обьект для управления
+	mycontrol m_control;//Перечисление (управление) 
 public:
 	game() = default;
 	game(const game&) = delete;

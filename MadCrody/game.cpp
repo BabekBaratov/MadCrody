@@ -12,7 +12,7 @@ void game::customization(int bot_num)
 
 	for (int i = 0; i < bot_arr.size(); i++)
 	{
-		map_obj.add_unit(bot_arr[i]);
+		map_obj.add_unit(bot_arr.at(i));
 	}
 
 	map_obj.add_unit(player_obj);
@@ -25,11 +25,11 @@ void game::customization(int bot_num)
 void game::restart()
 {
 	player_obj->set_position(map_obj.get_vertical(), map_obj.get_horizontal());
-	bonus_obj->set_random_position_bonus(map_obj.get_horizontal());
+	bonus_obj->set_random_position(map_obj.get_horizontal());
 
 	for (int i = 0; i < bot_arr.size(); i++)
 	{
-		bot_arr[i]->set_random_position_bot(map_obj.get_horizontal());
+		bot_arr.at(i)->set_random_position(map_obj.get_horizontal());
 	}
 }
 
@@ -37,16 +37,16 @@ void game::start()
 {
 	do
 	{
-		//Sleep(100);
+		//Sleep(50);
 		map_obj.map_generation();
 		control_obj.fun_control();
 		control_obj.logic();
 		map_obj.draw(player_obj);
-		bonus_obj->animation_bonus(map_obj.get_horizontal());
+		bonus_obj->animation(map_obj.get_horizontal());
 
 		for (int i = 0; i < bot_arr.size(); i++)
 		{
-			bot_arr[i]->animation_bot(map_obj.get_horizontal());
+			bot_arr.at(i)->animation(map_obj.get_horizontal());
 		}
 
 		check();
@@ -56,10 +56,9 @@ void game::start()
 void game::game_over()
 {
 	system("cls");
-	cout << "\t\t\t\tGame Over\n\t\t\t\tYour Score: " << player_obj->get_score()<< endl;
-
+	cout << "\t\t\t\t  Game Over\n\t\t\t\tYour Score: " << player_obj->get_score()<< endl;
 	player_obj->set_score(0);
-	Sleep(3000);
+	Sleep(2000);
 	system("cls");
 }
 
@@ -80,10 +79,8 @@ void game::check()
 	{
 		if (player_obj->get_x() == bonus_obj->get_x())
 		{
-			var_score++;
-			player_obj->set_score(var_score);
-			bonus_obj->set_random_position_bonus(map_obj.get_horizontal());
-			bonus_obj->set_increment(0);
+			player_obj->set_score(player_obj->get_score() + 1);
+			bonus_obj->set_random_position(map_obj.get_horizontal());
 		}
 	}
 }
